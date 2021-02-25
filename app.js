@@ -3,7 +3,7 @@ const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // to make use of req.body instead of req.query
 // app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,16 +19,16 @@ const pool = mysql.createPool({
 });
 
 // GET
-let homePath = "/api/discover-canada/home";
+let homePath = "/discover-canada/api/home";
 let homeGetter = (_, res) => {
     pool.getConnection((err, connection) => {
-        if (err) console.log(err);
+        if (err) res.json(err);
         connection.query("SELECT * FROM topic", (err, results) => {
             connection.release(); // return connection to the pool
             if (!err) {
                 res.json(results);
             } else {
-                console.log(err);
+                res.json(err);
             }
         });
     });
