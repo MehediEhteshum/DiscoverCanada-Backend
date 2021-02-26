@@ -1,6 +1,7 @@
 const express = require('express');
 // const bodyParser = require('body-parser');
 const env = require("./env.js");
+const topicsRouter = require("./routes/topics.js");
 
 const app = express();
 const port = env.port;
@@ -9,27 +10,15 @@ const port = env.port;
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 
-// connect to MySQL db by creating connection pool
-const pool = env.pool;
+//routing
+let topicsPath = "/discover-canada/api/topics";
 
-// GET
-let homePath = "/discover-canada/api/home";
-let homeGetter = (_, res) => {
-    pool.getConnection((err, connection) => {
-        if (err) res.json(err);
-        connection.query("SELECT id, title, image_url from topic", (err, results) => {
-            connection.release(); // return connection to the pool
-            if (!err) {
-                res.json(results);
-            } else {
-                res.json(err);
-            }
-        });
-    });
-};
-app.get(homePath, homeGetter);
+app.use(topicsPath, topicsRouter);
 
 // listen on port
-app.listen(port, () => {
+app.listen(port, (err) => {
+    if (err) {
+        return console.log("ERROR:", err);
+    }
     console.log(`Listening on ${port}...`);
 });
