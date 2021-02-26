@@ -5,13 +5,24 @@ const pool = env.pool;
 
 let topicsGetter = (_, res) => {
     pool.getConnection((err, connection) => {
-        if (err) res.json(err);
+        if (err) {
+            res.json({
+                "data": null,
+                "error": err
+            });
+        }
         connection.query("SELECT id, title, image_url from topic", (err, results) => {
             connection.release(); // return connection to the pool
             if (!err) {
-                res.json(results);
+                res.json({
+                    "data": results,
+                    "error": null
+                });
             } else {
-                res.json(err);
+                res.json({
+                    "data": null,
+                    "error": err
+                });
             }
         });
     });
