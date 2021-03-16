@@ -2,6 +2,7 @@ const express = require('express');
 // const bodyParser = require('body-parser');
 const env = require("./env.js");
 const topicsRouter = require("./routes/topics.js");
+const provincesRouter = require("./routes/provinces.js");
 
 const app = express();
 const port = env.port;
@@ -12,8 +13,10 @@ const port = env.port;
 
 //routing
 let topicsPath = "/discover-canada/api/topics";
+let provincesPath = "/discover-canada/api/provinces";
 
 app.use(topicsPath, topicsRouter);
+app.use(provincesPath, provincesRouter);
 
 // listen on port
 app.listen(port, (err) => {
