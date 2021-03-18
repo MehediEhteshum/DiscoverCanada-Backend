@@ -1,4 +1,4 @@
-const env = require("../env.js");
+const env = require("../env");
 
 // connect to MySQL db by creating connection pool
 const pool = env.pool;
@@ -11,7 +11,7 @@ let topicsGetter = (_, res) => {
                 "error": err
             });
         }
-        connection.query("SELECT id, title, image_url, province_dependency from topic", (err, results) => {
+        connection.query("SELECT id, title, image_url, province_dependent FROM topic", (err, results) => {
             connection.release(); // return connection to the pool
             if (!err) {
                 res.json({

@@ -1,9 +1,10 @@
 const express = require('express');
 // const bodyParser = require('body-parser');
-const env = require("./env.js");
-const topicsRouter = require("./routes/topics.js");
-const provincesRouter = require("./routes/provinces.js");
-const chaptersRouter = require("./routes/chapters.js");
+const env = require("./env");
+const topicsRouter = require("./routes/topics");
+const provincesRouter = require("./routes/provinces");
+const chaptersRouter = require("./routes/chapters");
+const specificChaptersRouter = require("./routes/specific_chapters");
 
 const app = express();
 const port = env.port;
@@ -13,13 +14,15 @@ const port = env.port;
 // app.use(bodyParser.json());
 
 //routing
-let topicsPath = "/discover-canada/api/topics";
-let provincesPath = "/discover-canada/api/provinces";
-let chaptersPath = "/discover-canada/api/chapters";
+const apiRootPath = "/discover-canada/api";
+const topicsPath = "/discover-canada/api/topics";
+const provincesPath = "/discover-canada/api/provinces";
+const chaptersPath = "/discover-canada/api/chapters";
 
 app.use(topicsPath, topicsRouter);
 app.use(provincesPath, provincesRouter);
 app.use(chaptersPath, chaptersRouter);
+app.use(apiRootPath, specificChaptersRouter);
 
 // listen on port
 app.listen(port, (err) => {

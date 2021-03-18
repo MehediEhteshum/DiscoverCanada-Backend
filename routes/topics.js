@@ -1,7 +1,7 @@
-express = require('express');
-topicsGetter = require('../controllers/topics');
+const express = require('express');
+const topicsGetter = require('../controllers/topics');
 
-router = express.Router();
+const router = express.Router();
 
 router
     .route('/')

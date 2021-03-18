@@ -1,7 +1,7 @@
-express = require('express');
-provincesGetter = require('../controllers/provinces');
+const express = require('express');
+const provincesGetter = require('../controllers/provinces');
 
-router = express.Router();
+const router = express.Router();
 
 router
     .route('/')

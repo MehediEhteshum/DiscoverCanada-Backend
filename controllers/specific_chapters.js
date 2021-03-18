@@ -3,7 +3,15 @@ const env = require("../env");
 // connect to MySQL db by creating connection pool
 const pool = env.pool;
 
-let provincesGetter = (_, res) => {
+let specificChaptersGetter = (req, res) => {
+    const topic_id = req.params.topic_id;
+    const province_name = req.params.province_name;
+    let queryString;
+    if (province_name === "All Provinces") {
+        queryString = "SELECT id, title FROM chapter WHERE topic_id=?";
+    } else {
+        queryString = "SELECT id, title FROM chapter WHERE topic_id=? AND province_name=?";
+    }
     pool.getConnection((err, connection) => {
         if (err) {
             res.json({
@@ -11,7 +19,7 @@ let provincesGetter = (_, res) => {
                 "error": err
             });
         }
-        connection.query("SELECT name FROM province", (err, results) => {
+        connection.query(queryString, [topic_id, province_name], (err, results) => {
             connection.release(); // return connection to the pool
             if (!err) {
                 res.json({
@@ -28,4 +36,4 @@ let provincesGetter = (_, res) => {
     });
 };
 
-module.exports = provincesGetter;
+module.exports = specificChaptersGetter;

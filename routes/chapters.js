@@ -1,7 +1,7 @@
-express = require('express');
-chaptersGetter = require('../controllers/chapters');
+const express = require('express');
+const chaptersGetter = require('../controllers/chapters');
 
-router = express.Router();
+const router = express.Router();
 
 router
     .route('/')
