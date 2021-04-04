@@ -4,7 +4,7 @@ const provincesGetter = require('../controllers/provinces');
 const router = express.Router();
 
 router
-    .route('/')
+    .route('/provinces')
     .get(provincesGetter);
 
 module.exports = router;

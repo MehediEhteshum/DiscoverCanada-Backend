@@ -11,7 +11,7 @@ let topicsGetter = (_, res) => {
                 "error": err
             });
         }
-        connection.query("SELECT id, title, image_url, province_dependent FROM topic", (err, results) => {
+        connection.query("SELECT id, title, image_url, is_province_dependent FROM topic", (err, results) => {
             connection.release(); // return connection to the pool
             if (!err) {
                 res.json({

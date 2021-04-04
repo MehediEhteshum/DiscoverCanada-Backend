@@ -15,13 +15,10 @@ const port = env.port;
 
 //routing
 const apiRootPath = "/discover-canada/api";
-const topicsPath = "/discover-canada/api/topics";
-const provincesPath = "/discover-canada/api/provinces";
-const chaptersPath = "/discover-canada/api/chapters";
 
-app.use(topicsPath, topicsRouter);
-app.use(provincesPath, provincesRouter);
-app.use(chaptersPath, chaptersRouter);
+app.use(apiRootPath, topicsRouter);
+app.use(apiRootPath, provincesRouter);
+app.use(apiRootPath, chaptersRouter);
 app.use(apiRootPath, specificChaptersRouter);
 
 // listen on port

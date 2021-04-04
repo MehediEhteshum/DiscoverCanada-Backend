@@ -4,7 +4,7 @@ const chaptersGetter = require('../controllers/chapters');
 const router = express.Router();
 
 router
-    .route('/')
+    .route('/chapters')
     .get(chaptersGetter);
 
 module.exports = router;
