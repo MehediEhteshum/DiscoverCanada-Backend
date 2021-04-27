@@ -11,7 +11,7 @@ let chaptersGetter = (_, res) => {
                 "error": err
             });
         }
-        connection.query("SELECT id, topic_id, province_name, title FROM chapter", (err, results) => {
+        connection.query("SELECT topic_id, province_name, title, pdf_url, web_url FROM chapter", (err, results) => {
             connection.release(); // return connection to the pool
             if (!err) {
                 res.json({

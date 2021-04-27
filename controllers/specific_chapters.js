@@ -8,9 +8,9 @@ let specificChaptersGetter = (req, res) => {
     const province_name = req.params.province_name;
     let queryString;
     if (province_name === "All Provinces") {
-        queryString = "SELECT id, title FROM chapter WHERE topic_id=?";
+        queryString = "SELECT title, pdf_url, web_url FROM chapter WHERE topic_id=?";
     } else {
-        queryString = "SELECT id, title FROM chapter WHERE topic_id=? AND province_name=?";
+        queryString = "SELECT title, pdf_url, web_url FROM chapter WHERE topic_id=? AND province_name=?";
     }
     pool.getConnection((err, connection) => {
         if (err) {
