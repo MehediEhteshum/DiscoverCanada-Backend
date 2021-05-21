@@ -1,13 +1,13 @@
 const express = require('express');
 // const bodyParser = require('body-parser');
-const env = require("./env");
+const db_connect = require("./db_connect");
 const topicsRouter = require("./routes/topics");
 const provincesRouter = require("./routes/provinces");
 const chaptersRouter = require("./routes/chapters");
 const specificChaptersRouter = require("./routes/specific_chapters");
 
 const app = express();
-const port = env.port;
+const port = db_connect.port;
 
 // to make use of req.body instead of req.query
 // app.use(bodyParser.urlencoded({ extended: false }));
