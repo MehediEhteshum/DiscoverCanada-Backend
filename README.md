@@ -1,1 +1,1 @@
-# Discover Canada App - Backend (TO BE UPDATED)
+# Discover Canada App - Backend (README TO BE UPDATED) 
